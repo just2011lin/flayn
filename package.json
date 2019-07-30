@@ -1,0 +1,27 @@
+{
+  "name": "flayn",
+  "version": "1.0.0",
+  "description": "some basic functions",
+  "main": "index.ts",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -r ./node_modules/ts-node/register test/**/*.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/just2011lin/flayn"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "just2011lin",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  }
+}
