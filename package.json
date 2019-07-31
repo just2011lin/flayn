@@ -1,10 +1,12 @@
 {
   "name": "flayn",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "some basic functions",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha -r ./node_modules/ts-node/register test/**/*.ts"
+    "test": "./node_modules/.bin/mocha -r ./node_modules/ts-node/register test/**/*.ts",
+    "start": "tsc --watch",
+    "build": "rm -rf dist && tsc"
   },
   "repository": {
     "type": "git",
