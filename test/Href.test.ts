@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
-import { hrefReg, Href } from '../src/Href';
+import { hrefReg, Href, parseQueryString, stringifyQueryData } from '../src/Href';
+import { IQueryData } from '../src/types';
 
 describe('常量hrefReg是一个检验和匹配http(s)链接的正则表达式', () => {
     it('是http(?)链接检验', () => {
@@ -85,5 +86,68 @@ describe('类Href用来获取http(s)链接的内容', () => {
     it('当链接中没有hash值时，getHash方法将返回undefined', () => {
         const href = 'https://onedrive.live.com/redir#';
         expect(new Href(href).getHash()).to.equal(undefined);
+    });
+});
+
+describe('parseQueryString方法测试', () => {
+    it('解析queryString', () => {
+        const queryString = 'resid=fdf&page=Edit&wd=what';
+        const result = parseQueryString(queryString);
+        const expectedResult = {
+            resid: 'fdf',
+            page: 'Edit',
+            wd: 'what',
+        };
+        expect(JSON.stringify(result)).to.equal(JSON.stringify(expectedResult));
+    });
+    it('当queryString中有中文汉字时的解析', () => {
+        const queryString = 'chn=汉字&page=10&title=真是太好了';
+        const result = parseQueryString(queryString);
+        const expectedResult = {
+            chn: '汉字',
+            page: '10',
+            title: '真是太好了',
+        };
+        expect(JSON.stringify(result)).to.equal(JSON.stringify(expectedResult));
+    });
+    it('queryString中有多个相同key的时候', () => {
+        const queryString = 'chn=汉字&chn=英文&chn=法语&page=10&page=20&title=真是太好了';
+        const result = parseQueryString(queryString);
+        const expectedResult = {
+            chn: ['汉字', '英文', '法语'],
+            page: ['10', '20'],
+            title: '真是太好了',
+        };
+        expect(JSON.stringify(result)).to.equal(JSON.stringify(expectedResult));
+    });
+    it('queryString中的key没有value时，将不会获取该key', () => {
+        const queryString = 'chn=&page=10&title=hello';
+        const result = parseQueryString(queryString);
+        expect(result.chn).to.equal(undefined);
+    });
+    it('方法stringifyQueryData将查询对象转成查询字符串', () => {
+        const queryData: IQueryData = {
+            chn: '汉字',
+            page: '10',
+            title: '真是太好了',
+        };
+        const queryString = stringifyQueryData(queryData);
+        const verifyQueryString = queryString.split('&').every((tupleStr) => {
+            return ['chn=汉字', 'page=10', 'title=真是太好了'].indexOf(tupleStr) !== -1;
+        }) && queryString.split('&').length === 3;
+        expect(verifyQueryString).to.equal(verifyQueryString);
+    });
+    it('queryData对象中有一些值是字符串数组时', () => {
+        const queryData: IQueryData = {
+            chn: ['汉字', '英文', '法语'],
+            page: ['10', '20'],
+            title: '真是太好了',
+        };
+        const queryString = stringifyQueryData(queryData);
+        const queryStrings = ['chn=汉字', 'chn=英文', 'chn=法语', 'page=10', 'page=20', 'title=真是太好了'];
+        const verifyQueryString = queryString.split('&').every((tupleStr) => {
+            return queryStrings.indexOf(tupleStr) !== -1;
+        }) && queryString.split('&').length === queryStrings.length;
+        expect(verifyQueryString).to.equal(verifyQueryString);
     });
 });
