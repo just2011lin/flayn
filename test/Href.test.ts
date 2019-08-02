@@ -87,6 +87,21 @@ describe('类Href用来获取http(s)链接的内容', () => {
         const href = 'https://onedrive.live.com/redir#';
         expect(new Href(href).getHash()).to.equal(undefined);
     });
+    it('实例方法getQueryData用于获取链接中查询参数', () => {
+        const href = 'https://onedrive.live.com/redir?resid=abc&page=Edit&wd=what#hash';
+        const queryData = new Href(href).getQueryData();
+        const expectedResult = {
+            resid: 'abc',
+            page: 'Edit',
+            wd: 'what',
+        };
+        expect(JSON.stringify(queryData)).to.equal(JSON.stringify(expectedResult));
+    });
+    it('链接中没有查询参数时，getQueryData方法将返回undefined', () => {
+        const href = 'https://onedrive.live.com/redir#hash';
+        const queryData = new Href(href).getQueryData();
+        expect(queryData).to.equal(undefined);
+    });
 });
 
 describe('parseQueryString方法测试', () => {

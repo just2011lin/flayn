@@ -81,7 +81,7 @@ export class Href {
     }
     /**
      * 获取查询字符串queryString
-     * @returns 如 resid=abc&page=Edit&wd=what，q=
+     * @returns 如 resid=abc&page=Edit&wd=what，没有查询字符串时将返回undefined
      */
     public getQueryString(): string {
         const regExpMatchArray = this.getHrefRegMatch();
@@ -110,6 +110,18 @@ export class Href {
             }
         }
         return hash;
+    }
+    /**
+     * 获取连接中的查询参数
+     * @returns 查询字符串解析后的对象；链接中没有查询字符串时将返回undefined
+     */
+    public getQueryData(): IQueryData {
+        let queryData: IQueryData;
+        const queryString = this.getQueryString();
+        if (queryString) {
+            queryData = parseQueryString(queryString);
+        }
+        return queryData;
     }
     private getHrefRegMatch(): RegExpMatchArray {
         return this.absUrl.match(hrefReg);
