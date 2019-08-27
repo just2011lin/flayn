@@ -58,7 +58,7 @@ describe('用getDiverseRanInter方法用于获取一个没有获取过的一个�
         for (let i = 0; i < 1000; i++) {
             rNums.push(getDiverseRanInter(min, max, sNums));
         }
-        const result = rNums.every(num => !sNums.includes(num));
+        const result = rNums.every(num => !(sNums.indexOf(num) > -1));
         expect(result).to.equal(true);
     });
     it('从10到15之间获取一个不在[10,11,12]的数1000次，并且获取的数都是大于等于10且小于等于15', () => {
