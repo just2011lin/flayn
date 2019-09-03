@@ -1,4 +1,4 @@
-import { getRanInter } from "./math";
+import { getRanInter } from './math';
 
 /**
  * 从dict中选取字符随机生成长度为len的字符串

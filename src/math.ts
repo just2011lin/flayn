@@ -4,8 +4,7 @@
  * @param max 可能较大的值
  * @returns 随机取到的值；min和max相等则返回min；能够取到min和max
  */
-export function getRanInter(_min: number, _max: number): number {
-    let min = _min, max = _max;
+export function getRanInter(min: number, max: number): number {
     if (min === max) {
         return min;
     }
@@ -21,7 +20,7 @@ export function getRanInter(_min: number, _max: number): number {
  * @returns {Array<number>} 从min和max范围内随机取出的值
  */
 export function getRanInters(min: number, max: number, num: number): number[] {
-    let rsNums = [];
+    const rsNums: number[] = [];
     for (let i = 0; i < num; i++) {
         rsNums.push(getRanInter(min, max));
     }
@@ -35,7 +34,7 @@ export function getRanInters(min: number, max: number, num: number): number[] {
  * @returns 返回从min和max范围随机取到的并且sNums没有的值
  */
 export function getDiverseRanInter(min: number, max: number, sNums: number[]): number {
-    let sNum = getRanInter(min, max);
+    const sNum = getRanInter(min, max);
     if (sNums.indexOf(sNum) > -1) {
         return getDiverseRanInter(min, max, sNums);
     }
@@ -52,7 +51,7 @@ export function getDiverseRanInters(min: number, max: number, num: number): numb
     if (Math.abs(max - min) < num) {
         throw new Error('max减去min小于num，请检查！');
     }
-    let sNums: number[] = [];
+    const sNums: number[] = [];
     for (let i = 0; i < num; i++) {
         sNums.push(getDiverseRanInter(min, max, sNums));
     }
@@ -65,24 +64,22 @@ export function getDiverseRanInters(min: number, max: number, num: number): numb
  */
 export function getRanIndexByProportion(proportions: number[]): number {
     // 有几种球
-    let length = proportions.length;
+    const length = proportions.length;
     // 共有多少球
     let total = 0;
     // 计算辅助变量
-    let _total = 0;
+    let totalAssist = 0;
     // 随机数比较基数
-    let sortEnd = 1000000;
+    const sortEnd = 1000000;
     // 为每种球生成一个区间
-    let sortProbArr = [0];
+    const sortProbArr = [0];
     // 获取在区间的一个数
-    let randomNum = Math.random() * sortEnd;
-    total = proportions.reduce(function (sum, value) {
-        return sum + value;
-    }, 0);
-    proportions.reduce(function (sum, value) {
-        _total = sum + value;
-        sortProbArr.push(_total / total * sortEnd);
-        return _total;
+    const randomNum = Math.random() * sortEnd;
+    total = proportions.reduce((sum, value) => sum + value, 0);
+    proportions.reduce((sum, value) => {
+        totalAssist = sum + value;
+        sortProbArr.push(totalAssist / total * sortEnd);
+        return totalAssist;
     }, 0);
     sortProbArr[length] = sortEnd + 1;
     for (let i = 0; i < proportions.length; i++) {

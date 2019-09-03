@@ -10,7 +10,7 @@ describe('getRanStrByDict用于在一段字符串中取一段随机字符组成�
         for (let i = 0; i < 1000; i++) {
             strs.push(getRanStrByDict(dict, len));
         }
-        const result = strs.every(str => str.split('').every(char => dict.indexOf(char) > -1));
+        const result = strs.every((str) => str.split('').every((char) => dict.indexOf(char) > -1));
         expect(result).to.equal(true);
     });
     it('从abcdefg中取出长度为3的字符串10000次，最后取出的字符串有343个组合', () => {
@@ -21,9 +21,9 @@ describe('getRanStrByDict用于在一段字符串中取一段随机字符组成�
             strs.push(getRanStrByDict(dict, len));
         }
         const obj: { [key: string]: boolean } = {};
-        strs.forEach(str => {
+        strs.forEach((str) => {
             obj[str] = true;
-        })
+        });
         expect(Object.keys(obj).length).to.equal(343);
     });
     it('从abcdefg中取出长度为3的字符串1000次，取出的字符串长度均为3', () => {
@@ -33,10 +33,10 @@ describe('getRanStrByDict用于在一段字符串中取一段随机字符组成�
         for (let i = 0; i < 1000; i++) {
             strs.push(getRanStrByDict(dict, len));
         }
-        const result = strs.every(str => str.length === 3);
+        const result = strs.every((str) => str.length === 3);
         expect(result).to.equal(true);
     });
-})
+});
 
 describe('getZeroNumStr方法用于将一位的数补全为0+一位数的格式', () => {
     it('将数字0补全，将得到00字符串', () => {
@@ -51,4 +51,4 @@ describe('getZeroNumStr方法用于将一位的数补全为0+一位数的格式'
     it('传入数字1.3，将得到01.3的字符串', () => {
         expect(getZeroNumStr(1.3)).to.equal('01.3');
     });
-})
+});
