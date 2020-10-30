@@ -76,3 +76,18 @@ export function formatDate(date: Date, fmt2: string): string {
     }
     return fmt;
 }
+
+/**
+ * 计算两个日期相差的天数
+ * @param dateX 日期1
+ * @param dateY 日期2
+ */
+export function numberOfDayDifference(dateX: Date, dateY: Date): number{
+    if(dateX instanceof Date && dateY instanceof Date){
+        const weeTimeX = weeTime(dateX);
+        const weeTimeY = weeTime(dateY);
+        const timeOfDayDifference = Math.abs(weeTimeX - weeTimeY);
+        return timeOfDayDifference / dayMills;
+    }
+    return 0;
+}

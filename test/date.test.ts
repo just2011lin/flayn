@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import 'mocha';
-import { dayHours, dayMills, dayMinutes, daySeconds, isSameDay, weeTime, formatDate } from '../src/date';
+import { dayHours, dayMills, dayMinutes, daySeconds, isSameDay, weeTime, formatDate, numberOfDayDifference } from '../src/date';
 
 describe('日期Date中常量测试', () => {
     it('一天的小时数dayHours是24', () => {
@@ -42,5 +42,13 @@ describe('formatDate方法测试', () => {
     it('将日期对象转为"yyyy-MM-dd hh:mm:ss"的格式', () => {
         const date = new Date(2019, 8, 30, 14, 30, 20);
         expect(formatDate(date, 'yyyy-MM-dd hh:mm:ss')).to.equal('2019-09-30 14:30:20');
+    });
+});
+
+describe('numberOfDayDifference方法测试', () => {
+    it('计算2020-01-02 11:22:33与2020-01-22 22:33:55相差的天数', () => {
+        const dateX = new Date('2020-01-02 11:22:33');
+        const dateY = new Date('2020-01-22 22:33:55');
+        expect(numberOfDayDifference(dateX, dateY)).to.equal(20);
     });
 });
