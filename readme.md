@@ -2,6 +2,7 @@
 - [Github地址](https://github.com/just2011lin/flayn)
 
 ## 更新日志
+- 1.0.9 在Date模块添加一个计算两个日期相差天数的
 - 1.0.8 添加str.ts脚本，其中包含两个字符串处理的方法
 - 1.0.7 添加math.ts脚本，其中包含一些获取随机数相关的方法
 - 1.0.6 类Href中添加实例方法getQueryData，用来获取链接中的查询参数
