@@ -1,0 +1,91 @@
+body,
+blockquote,
+dl,
+dd,
+figure,
+hr,
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+address {
+    font-style: normal;
+}
+
+pre {
+    margin: 0;
+    font-family: inherit;
+}
+
+/* 一下是内联元素 */
+
+a {
+    color: inherit;
+    cursor: auto;
+    text-decoration: none;
+}
+
+abbr[title],
+s,
+u {
+    text-decoration: none;
+}
+
+b,
+strong {
+    font-weight: normal;
+}
+
+cite,
+dfn,
+em,
+i,
+var {
+    font-style: normal;
+}
+
+code,
+kbd,
+samp {
+    font-family: inherit;
+}
+
+mark {
+    background: none;
+    color: inherit;
+}
+
+q::after,
+q::before {
+    content: "";
+}
+
+small {
+    font-size: inherit;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}

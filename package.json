@@ -1,31 +1,31 @@
 {
-  "name": "flayn",
-  "version": "1.0.9",
-  "description": "some basic functions",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "./node_modules/.bin/mocha -r ./node_modules/ts-node/register test/**/*.ts",
-    "start": "tsc --watch",
-    "build": "rm -rf dist && tsc",
-    "upload": "npm run build && npm publish",
-    "lint": "tslint src/** test/**"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/just2011lin/flayn"
-  },
-  "keywords": [
-    "typescript"
-  ],
-  "author": "just2011lin",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.7",
-    "chai": "^4.2.0",
-    "mocha": "^6.2.0",
-    "ts-node": "^8.3.0",
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.3"
-  }
+    "name": "flayn",
+    "version": "1.0.10",
+    "description": "some basic functions",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "./node_modules/.bin/mocha -r ./node_modules/ts-node/register test/**/*.ts",
+        "start": "tsc --watch",
+        "build": "rm -rf dist && tsc",
+        "upload": "npm run build && npm publish",
+        "lint": "tslint src/** test/**"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/just2011lin/flayn"
+    },
+    "keywords": [
+        "typescript"
+    ],
+    "author": "just2011lin",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/chai": "^4.1.7",
+        "@types/mocha": "^5.2.7",
+        "chai": "^4.2.0",
+        "mocha": "^6.2.0",
+        "ts-node": "^8.3.0",
+        "tslint": "^5.18.0",
+        "typescript": "^3.5.3"
+    }
 }
